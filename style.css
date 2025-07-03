@@ -23,7 +23,8 @@ html, body {
     width: 100%;
     background-color: #111720;
     color: white;
-    padding: 15px;
+    padding: 0;
+    height: 80px;
 }
 
 .h1 {
@@ -32,9 +33,80 @@ html, body {
     text-align: center;
 }
 
-.container {
+.main{
     flex: 1;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    border-radius: 5px;
+    border: 1px solid #000000;
+    background-color: #ff0000;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 515px;
+    height: 515px;
+    gap: 0;
+}
+
+.hidden{
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .hidden{
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 48px;
+    }
+    #container {
+        display: none;
+    }
+    .clear{
+        display: none;
+    }
+}
+
+.cell {
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.clear{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    background-color: rgba(255, 0, 0, 0.58);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.clear:hover{
+    background-color: #ff0000;
+}
+
+.clear:active{
+    background-color: #ffaeae;
 }
 
 .footer {
