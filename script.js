@@ -1,6 +1,9 @@
 let row = 10;
 let col = 10;
 let grid = [];
+let isMouseDown = false;
+let myColor = "#ffffff"
+let randomColor = false;
 
 function createGrid() {
     grid = [];
@@ -26,12 +29,13 @@ function renderGrid() {
 }
 
 function getRandomColor() {
+    randomColor = true;
     const letters = '0123456789ABCDEF';
-    let color = '#';
+    let newColor = '#';
     for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+        newColor += letters[Math.floor(Math.random() * 16)];
     }
-    return color;
+    return newColor;
 }
 
 function formatCells() {
@@ -39,24 +43,58 @@ function formatCells() {
     const containerStyles = window.getComputedStyle(container);
     const containerHeight = parseFloat(containerStyles.height);
     const containerWidth = parseFloat(containerStyles.width);
-    alert(containerHeight);
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
         cell.style.height = `${Math.floor((containerHeight - 15) / row)}px`;
         cell.style.width = `${Math.floor((containerWidth - 15) / col)}px`;
     })
     cells.forEach(cell => {
-        cell.addEventListener('mouseover', () => {
-            cell.style.backgroundColor = getRandomColor();
+        cell.addEventListener('mousedown', () => {
+            isMouseDown = true;
+            if (randomColor) {
+                cell.style.backgroundColor = getRandomColor()
+            } else {
+                cell.style.backgroundColor = myColor;
+            }
         })
     });
+    cells.forEach(cell => {
+        cell.addEventListener('mouseenter', () => {
+            if (isMouseDown) {
+                if (randomColor) {
+                    cell.style.backgroundColor = getRandomColor()
+                } else {
+                    cell.style.backgroundColor = myColor;
+                }
+            }
+        })
+    })
+    cells.forEach(cell => {
+        cell.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        })
+    })
 }
 
 function reset(){
+    randomColor = false;
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
         cell.style.backgroundColor = 'white';
     });
+}
+
+function openColorPicker() {
+    randomColor = false;
+    document.getElementById('colorPicker').click();
+    document.getElementById('colorPicker').addEventListener('input', (e) => {
+        myColor = e.target.value;
+    });
+}
+
+function erase(){
+    randomColor = false;
+    myColor = "#ffffff"
 }
 
 document.addEventListener('DOMContentLoaded', () => {

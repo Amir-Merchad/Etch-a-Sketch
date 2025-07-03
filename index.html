@@ -10,11 +10,22 @@
 </head>
 <body class="body">
 	<header class="header"><h1>Etch a Sketch</h1></header>
-	<div class="main">
-		<div id="container" class="container"></div>
-		<div class="hidden">Your'e not supposed to open this on a Phone</div>
+	<div class="main-container">
+		<div class="buttons">
+			<button class="multiColor" onclick="getRandomColor()">Multi Color</button>
+			<button class="pickColor" onclick="openColorPicker()">Pick Color</button>
+			<input type="color" id="colorPicker" style="display: none;">
+			<button class="erase" onclick="erase()">Erase</button>
+			<button id="clear" class="clear" onclick=reset() >Clear</button>
+			<label class="slider" for="slider">Size:</label>
+			<input type="range" id="slider" min="0" max="100" value="15">
+			<input type="number" id="sliderValue" min="0" max="100" value="15">
+		</div>
+		<div class="main">
+			<div id="container" class="container"></div>
+			<div class="hidden">Your'e not supposed to open this on a Phone</div>
+		</div>
 	</div>
-	<button id="clear" class="clear">Clear</button>
 	<footer class="footer">Copy Right © 2025 <a href="https://github.com/Amir-Merchad" class="mygithub"> Amir Merchad </a></footer>
 </body>
 </html>

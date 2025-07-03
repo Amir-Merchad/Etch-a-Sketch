@@ -33,15 +33,26 @@ html, body {
     text-align: center;
 }
 
-.main{
+.main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     flex: 1;
+}
+
+.main{
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    margin-left: 50px;
+    align-items: flex-start;
 }
 
 #container {
+    position: absolute;
     border-radius: 5px;
     border: 1px solid #000000;
     background-color: #ff0000;
@@ -64,6 +75,7 @@ html, body {
         text-align: center;
         flex: 1;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -79,6 +91,7 @@ html, body {
 }
 
 .cell {
+    position: relative;
     display: flex;
     height: 10px;
     width: 10px;
@@ -86,23 +99,110 @@ html, body {
     border: 1px solid #000000;
 }
 
-.clear{
+.buttons{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none; /* Remove default */
+    width: 200px;
+    height: 6px;
+    background: #ddd;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background: #192330;
+    border-radius: 50%;
+    border: 2px solid #333;
+    transition: background 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #192330;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    background: #192330;
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.multiColor, .pickColor, .erase, .clear{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 50px;
-    background-color: rgba(255, 0, 0, 0.58);
+    width: 300px;
+    height: 100px;
+    background-color: #ff0000;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+.multiColor{
+    background-color: #111720;
+    color: white;
+}
+
+.pickColor{
+    background-color: #ffaeae;
+    color: white;
+}
+
+.erase{
+    background-color: #9c9c9c;
+    color: white;
+}
+
+.clear{
+    background-color: #ff0000;
+    color: white;
+}
+
+.multiColor:hover{
+    background-color: #0000ff;
+}
+
+.multiColor:active{
+    background-color: #aeaeff;
+}
+
+.pickColor:hover{
+    background-color: #ff0000;
+}
+
+.pickColor:active{
+    background-color: #ffaeae;
+}
+
+.erase:hover{
+    background-color: #7a7a7a;
+}
+
+.erase:active{
+    background-color: #c4c4c4;
 }
 
 .clear:hover{
-    background-color: #ff0000;
+    background-color: #ff7575;
 }
 
 .clear:active{
