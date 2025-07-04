@@ -1,11 +1,11 @@
-let row = 10;
-let col = 10;
+let row = 15;
+let col = 15;
 let grid = [];
 let isMouseDown = false;
 let myColor = "#ffffff"
 let randomColor = false;
 
-function createGrid() {
+function createGrid(row,col) {
     grid = [];
     for (let i = 0; i<row; i++) {
         const row = [];
@@ -45,8 +45,8 @@ function formatCells() {
     const containerWidth = parseFloat(containerStyles.width);
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
-        cell.style.height = `${Math.floor((containerHeight - 15) / row)}px`;
-        cell.style.width = `${Math.floor((containerWidth - 15) / col)}px`;
+        cell.style.height = `${Math.floor(containerHeight / row)}px`;
+        cell.style.width = `${Math.floor(containerWidth / col)}px`;
     })
     cells.forEach(cell => {
         cell.addEventListener('mousedown', () => {
@@ -98,7 +98,34 @@ function erase(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    createGrid();
+    createGrid(col,row);
     renderGrid();
     formatCells();
+
+    const slider = document.getElementById('slider');
+    const sliderValue = document.getElementById('sliderValue');
+
+    slider.addEventListener('input', () => {
+        let val = parseInt(slider.value, 10);
+        sliderValue.value = val.toString();
+        row = val;
+        col = val;
+        createGrid();
+        renderGrid();
+        formatCells();
+    });
+
+    sliderValue.addEventListener('input', () => {
+        let val = parseInt(sliderValue.value, 10);
+        let min = parseInt(slider.min, 10);
+        let max = parseInt(slider.max, 10);
+        val = Math.min(Math.max(val, min), max);
+        slider.value = val.toString();
+        sliderValue.value = val.toString();
+        row = val;
+        col = val;
+        createGrid();
+        renderGrid();
+        formatCells();
+    });
 });
